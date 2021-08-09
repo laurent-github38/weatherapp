@@ -1,18 +1,22 @@
 version: "3"
 services:
-  weather_backend:
+  weatherapp2_backend:
     build:
       dockerfile: ./Dockerfile
       context: ./backend
     ports:
       - 9000:9000
     links:
-      - weather_frontend
+      - weatherapp2_frontend
     environment:
       APPID: 99b1cb19e22ee4efa953441c7735e92b
-  weather_frontend:
+    volumes:
+      - ./backend:/usr/src/app
+  weatherapp2_frontend:
     build:
       dockerfile: ./Dockerfile
       context: ./frontend
     ports:
       - 8000:8000
+    volumes:
+      - ./frontend:/usr/src/app
